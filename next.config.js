@@ -1,7 +1,23 @@
+const path = require('path')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
 
-module.exports = nextConfig
+  sassOptions: {
+    includePaths: [path.join(__dirname, "/src/styles")],
+    prependData: `@import "./sass/main.scss";`,
+  },
+
+  async rewrites() {
+    return [
+      {
+        source: "/",
+        destination: "/home",
+      },
+    ];
+  },
+};
+
+module.exports = nextConfig;
