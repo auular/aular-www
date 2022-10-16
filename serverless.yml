@@ -1,0 +1,5 @@
+dreambody:
+  component: "@sls-next/serverless-component"
+  inputs:
+    domain: "auular.com.br"
+    bucketName: auular-www
