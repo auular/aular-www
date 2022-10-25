@@ -1,4 +1,4 @@
-dreambody:
+auular:
   component: "@sls-next/serverless-component"
   inputs:
     domain: "auular.com.br"
