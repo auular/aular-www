@@ -22,10 +22,8 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-      # comment out this section on initial deploy
-      # - name: Download `.serverless` state from S3
-      #   run: aws s3 sync s3://bhall2001-serverless-state-bucket/your-site-name/prod/.serverless .serverless --delete
-      # end comment out this section on initial deploy
+      - name: Download `.serverless` state from S3
+        run: aws s3 sync s3://bhall2001-serverless-state-bucket/your-site-name/prod/.serverless .serverless --delete
       
       - name: Deploy Aular
         run: npx serverless
