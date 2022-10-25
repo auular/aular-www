@@ -23,7 +23,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Download `.serverless` state from S3
-        run: aws s3 sync s3://bhall2001-serverless-state-bucket/your-site-name/prod/.serverless .serverless --delete
+        run: aws s3 sync s3://auular-www/your-site-name/prod/.serverless .serverless --delete
       
       - name: Deploy Aular
         run: npx serverless
