@@ -1,1 +1,16 @@
+.card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    width: 275px;
+    height: 390px;
+    margin: 0 60px;
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    text-align: center;
+    color: $black;
 
+    img {
+        max-height: 159px;
+    }
+}
