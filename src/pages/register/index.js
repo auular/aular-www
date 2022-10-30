@@ -1,20 +1,23 @@
 import { ArrowLeft } from "../../components/ArrowLeft";
-import Card from "./components/Card";
+import { Card } from "./components/Card";
+
 import styles from "./Register.module.scss";
 
-export default function Register() {
+export default function Registration() {
   const registerType = [
     {
       type: "Usuário",
       description:
         "Crie uma conta de usuário para desfrutar dos serviços disponibilizados pela Auular",
       image: "/images/register-user.svg",
+      slug: "user",
     },
     {
       type: "Empreendedor",
       description:
         "Cadastre seu negócio e conte conosco para alcançar o público amante de pets",
       image: "/images/register-company.svg",
+      slug: "entrepeuner",
     },
   ];
 
@@ -31,9 +34,11 @@ export default function Register() {
       <div className={styles.cards}>
         {registerType.map((item) => (
           <Card
+            key={item.slug}
             image={item.image}
             type={item.type}
             description={item.description}
+            slug={item.slug}
           />
         ))}
       </div>

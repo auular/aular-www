@@ -3,6 +3,7 @@
     height: 100vh;
     background-color: $blue;
     overflow: hidden;
+    color: $white;
 
     .header {
         display: flex;
@@ -24,4 +25,8 @@
         display: flex;
         justify-content: center;
     }
+}
+
+.slug {
+    
 }
