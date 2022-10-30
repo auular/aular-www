@@ -1,6 +1,6 @@
 import styles from "./User.module.scss";
 
-export const User = () => {
+const User = () => {
   return (
     <div className={styles.user}>
       <h2>Crie uma conta</h2>
@@ -13,3 +13,5 @@ export const User = () => {
     </div>
   );
 };
+
+export default User;

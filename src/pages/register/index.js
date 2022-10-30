@@ -1,5 +1,5 @@
 import { ArrowLeft } from "../../components/ArrowLeft";
-import { Card } from "./components/Card";
+import Card from "./components/Card";
 
 import styles from "./Register.module.scss";
 

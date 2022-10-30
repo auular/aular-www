@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import { Entrepeuner } from "./components/Entrepreneur";
-import { User } from "./components/User";
+import Entrepeuner from "./components/Entrepreneur";
+import User from "./components/User";
 
 import styles from "./Register.module.scss";
 

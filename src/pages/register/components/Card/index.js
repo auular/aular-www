@@ -3,7 +3,7 @@ import { BlueButton } from "../../../../components/BlueButton";
 
 import styles from "./Card.module.scss";
 
-export const Card = ({ image, type, description, slug }) => {
+const Card = ({ image, type, description, slug }) => {
   return (
     <div className={styles.card}>
       <img src={image} />
@@ -16,4 +16,6 @@ export const Card = ({ image, type, description, slug }) => {
       </div>
     </div>
   );
-}
+};
+
+export default Card;
