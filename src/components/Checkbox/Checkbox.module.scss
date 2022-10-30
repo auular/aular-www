@@ -1,0 +1,40 @@
+.checkbox {
+    display: flex;
+    align-items: center;
+    margin: 3px 0;
+
+    [type="checkbox"] {
+        width: 1.2rem;
+        height: 1.2rem;
+        border: 2.5px solid $blue;
+        vertical-align: middle;
+        -webkit-appearance: none;
+        background: none;
+        outline: 0;
+        background-color: #ffffff;
+        transition: background 300ms;
+        cursor: pointer;
+    }
+
+    [type="checkbox"]::before {
+        content: "";
+        color: transparent;
+        display: block;
+        width: inherit;
+        height: inherit;
+        border-radius: inherit;
+        background-color: transparent;
+        background-size: contain;
+    }
+
+    [type="checkbox"]:checked {
+        background-color: transparent;
+    }
+
+    [type="checkbox"]:checked::before {
+        background-image: url("~/public/images/pawprint.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+        max-width: 0.9rem;
+    }
+}

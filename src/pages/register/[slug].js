@@ -9,9 +9,11 @@ export default function Register() {
   const { slug } = router.query;
 
   return (
-    <>
-      <div className={styles.slug}>{slug === "user" ? <User /> : <Entrepeuner />}</div>
-      {/* <img src="/images/dog-playing.svg" /> */}
-    </>
+    <div className={styles.slug}>
+      <div className={styles.form}>{slug === "user" ? <User /> : <Entrepeuner />}</div>
+      <div className={styles.background}>
+        <img src="/images/dog-playing.svg" />
+      </div>
+    </div>
   );
 }
