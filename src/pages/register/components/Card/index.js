@@ -3,7 +3,7 @@ import { BlueButton } from "../../../../components/BlueButton";
 
 import styles from "./Card.module.scss";
 
-export function Card({ image, type, description, slug }) {
+export const Card = ({ image, type, description, slug }) => {
   return (
     <div className={styles.card}>
       <img src={image} />

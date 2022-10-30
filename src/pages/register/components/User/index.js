@@ -1,6 +1,6 @@
 import styles from "./User.module.scss";
 
-export function User() {
+export const User = () => {
   return (
     <div className={styles.user}>
       <h2>Crie uma conta</h2>
@@ -12,4 +12,4 @@ export function User() {
       <input />
     </div>
   );
-}
+};
