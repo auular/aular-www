@@ -3,8 +3,30 @@
     height: 100vh;
     background-color: $blue;
     overflow: hidden;
+    color: $white;
 
-    h1 {
-        text-align: center;
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h1 {
+            text-align: center;
+            margin: 50px;
+    
+            span {
+                color: $yellow;
+            }
+        }
     }
+
+
+    .cards {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.slug {
+    
 }
