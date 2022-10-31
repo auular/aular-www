@@ -1,8 +1,10 @@
 import { useRouter } from "next/router";
-import Entrepeuner from "./components/Entrepreneur";
-import User from "./components/User";
+import { lazy, Suspense } from "react";
 
 import styles from "./Register.module.scss";
+
+const User = lazy(() => import("./components/User"));
+const Entrepreneur = lazy(() => import("./components/Entrepreneur"));
 
 export default function Register() {
   const router = useRouter();
@@ -10,7 +12,11 @@ export default function Register() {
 
   return (
     <div className={styles.slug}>
-      <div className={styles.form}>{slug === "user" ? <User /> : <Entrepeuner />}</div>
+      <div className={styles.form}>
+        <Suspense fallback={<h2>Loading...</h2>}>
+          {slug === "user" ? <User /> : <Entrepreneur />}
+        </Suspense>
+      </div>
       <div className={styles.background}>
         <img src="/images/dog-playing.svg" />
       </div>
