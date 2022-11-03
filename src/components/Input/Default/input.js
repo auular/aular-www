@@ -13,7 +13,7 @@ const Input = ({ name, label, control, rules, errors }) => {
     <div className={styles.default}>
       <label htmlFor={name}>{label}</label>
       <input {...field} className={styles.input} />
-      <span>{errors && rules.required}</span>
+      {errors && errors.message}
     </div>
   );
 };
