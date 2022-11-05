@@ -53,6 +53,12 @@ export default function Login() {
                 Esqueceu sua senha?
               </a>
             </Link>
+            <p className={styles.login__form__content__create_account}>
+              Não tem uma conta?
+              <Link href="/">
+                <span> Crie uma</span>
+              </Link>
+            </p>
           </div>
         </div>
         <div className={styles.login__background}>

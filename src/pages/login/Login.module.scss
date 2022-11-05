@@ -28,6 +28,15 @@
                 font-weight: bold;
                 text-align: center;
             }
+
+            &__create_account {
+                text-align: center;
+                font-weight: bold;
+                
+                span {
+                    color: $blue;
+                }
+            }
         }
     }
 
