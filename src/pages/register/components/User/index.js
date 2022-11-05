@@ -50,7 +50,7 @@ const User = () => {
           rules={{ required: true }}
           errors={errors.user_password}
         />
-        <div className={styles.checkbox}>
+        <div className={styles.user__checkbox}>
           {checkboxContent.map((checkbox) => (
             <Input.Checkbox
               key={checkbox.slug}

@@ -12,12 +12,12 @@ export default function Register() {
 
   return (
     <div className={styles.slug}>
-      <div className={styles.form}>
+      <div className={styles.slug__form}>
         <Suspense fallback={<h2>Loading...</h2>}>
           {slug === "user" ? <User /> : <Entrepreneur />}
         </Suspense>
       </div>
-      <div className={styles.background}>
+      <div className={styles.slug__background}>
         <img src="/images/dog-playing.svg" />
       </div>
     </div>

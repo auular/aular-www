@@ -1,0 +1,44 @@
+.login {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100vh;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    &__form {
+        grid-column: 2;
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+
+        &__content {
+            display: flex;
+            flex-direction: column;
+            border-radius: 30px;
+            border: 2px solid $blue;
+            min-width: 425px;
+            padding: 30px 38px;
+
+            h2 {
+                text-align: center;
+            }
+
+            &__forgot_password {
+                color: $blue;
+                font-weight: bold;
+                text-align: center;
+            }
+        }
+    }
+
+    &__background {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 55px;
+
+        img {
+            max-width: 250px;
+        }
+    }
+}

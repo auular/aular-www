@@ -5,7 +5,7 @@
     overflow: hidden;
     color: $white;
 
-    .header {
+    &__header {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -21,7 +21,7 @@
     }
 
 
-    .cards {
+    &__cards {
         display: flex;
         justify-content: center;
     }
@@ -32,7 +32,7 @@
     height: 100vh;
     justify-content: center;
 
-    .form {
+    &__form {
         display: flex;
         flex: 1;
         align-items: center;
@@ -40,7 +40,7 @@
         margin: 0 150px;
     }
 
-    .background {
+    &__background {
         display: flex;
         align-items: flex-end;
         padding: 55px;

@@ -1,0 +1,20 @@
+.notFound {
+    display: flex;
+    padding: 200px 300px;
+
+    &__content {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    
+    &__background {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        align-items: flex-end;
+    }
+}

@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./BlueButton.module.scss";
+import styles from "./YellowButton.module.scss";
 
-export const BlueButton = React.forwardRef(
+export const YellowButton = React.forwardRef(
   ({ onClick, href, value, margin, type }, ref) => {
     return (
       <button

@@ -23,7 +23,7 @@ export default function Registration() {
 
   return (
     <main className={styles.register}>
-      <div className={styles.header}>
+      <div className={styles.register__header}>
         <div style={{ textAlign: "left" }}>
           <ArrowLeft />
         </div>
@@ -31,7 +31,7 @@ export default function Registration() {
           Escolha qual o tipo do seu <span>Cadastro</span>
         </h1>
       </div>
-      <div className={styles.cards}>
+      <div className={styles.register__cards}>
         {registerType.map((item) => (
           <Card
             key={item.slug}
