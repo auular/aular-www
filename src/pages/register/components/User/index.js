@@ -12,7 +12,7 @@ const User = () => {
     mode: "onChange",
   });
 
-  const onSubmit = async (data) => console.log(data);
+  const onSubmit = async data => console.log(data);
 
   const checkboxContent = [
     {

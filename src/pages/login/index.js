@@ -18,7 +18,7 @@ export default function Login() {
     slug: "stay_connected",
   };
 
-  const onSubmit = async (data) => console.log(data);
+  const onSubmit = async data => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
