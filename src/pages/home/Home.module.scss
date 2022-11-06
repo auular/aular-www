@@ -1,0 +1,21 @@
+.home {
+    &__hero {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 50px 100px;
+        
+        &_content {
+            grid-column: 1;
+            max-width: 430px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+
+            span {
+                color: $yellow;
+            }
+        }
+    }
+}

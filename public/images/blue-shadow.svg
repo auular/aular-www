@@ -1,0 +1,22 @@
+<svg width="444" height="454" viewBox="0 0 444 454" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_d_302_5)">
+<path d="M39.4657 112.404C17.3777 68.0797 94.2058 -33.2578 192.162 12.9496C290.118 59.1569 240.5 74.7719 345.178 74.7719C449.856 74.7719 411.072 150.906 424.862 193.955C438.652 237.004 456.259 350.77 403.439 407.784C350.62 464.797 279.748 433.362 228.335 392.487C176.922 351.613 150.226 390.587 95.1662 369.543C40.106 348.499 48.7491 344.368 20.2587 316.962C-8.23178 289.557 10.0149 235.672 20.2587 219.449C30.5024 203.225 61.5538 156.728 39.4657 112.404Z" fill="url(#paint0_linear_302_5)"/>
+<path d="M39.4657 112.404C17.3777 68.0797 94.2058 -33.2578 192.162 12.9496C290.118 59.1569 240.5 74.7719 345.178 74.7719C449.856 74.7719 411.072 150.906 424.862 193.955C438.652 237.004 456.259 350.77 403.439 407.784C350.62 464.797 279.748 433.362 228.335 392.487C176.922 351.613 150.226 390.587 95.1662 369.543C40.106 348.499 48.7491 344.368 20.2587 316.962C-8.23178 289.557 10.0149 235.672 20.2587 219.449C30.5024 203.225 61.5538 156.728 39.4657 112.404Z" stroke="#0C45A6"/>
+</g>
+<defs>
+<filter id="filter0_d_302_5" x="0.500244" y="0.645081" width="443.15" height="452.672" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="10"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0470588 0 0 0 0 0.270588 0 0 0 0 0.65098 0 0 0 1 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_302_5"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_302_5" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_302_5" x1="18.0179" y1="243.68" x2="454.018" y2="243.68" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0C45A6"/>
+<stop offset="1" stop-color="#0C45A6"/>
+</linearGradient>
+</defs>
+</svg>

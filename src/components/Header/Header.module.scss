@@ -1,3 +1,25 @@
 .header {
-    color: #138729;
+    padding: 30px 80px;
+    background-color: $blue;
+    color: #FFFFFF;
+    max-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+    h1 {
+        cursor: pointer;
+    }
+
+    &__items {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+
+        li {
+            margin: 0 10px;
+            padding: 8px;
+            cursor: pointer;
+        }
+    }
 }
