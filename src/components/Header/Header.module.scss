@@ -1,12 +1,12 @@
 .header {
     padding: 30px 80px;
     background-color: $blue;
-    color: #FFFFFF;
+    color: #ffffff;
     max-height: 110px;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    
+
     h1 {
         cursor: pointer;
     }
@@ -20,6 +20,11 @@
             margin: 0 10px;
             padding: 8px;
             cursor: pointer;
+
+            &:hover {
+                color: $yellow;
+                transition: all .3s ease-in;
+            }
         }
     }
 }
