@@ -1,10 +1,14 @@
 .button {
     border-radius: 20px;
     background-color: $blue;
-    color: #FFFFFF;
+    color: #ffffff;
     border: none;
     height: 40px;
     padding: 5px 15px;
     cursor: pointer;
     font-weight: 700;
+
+    &:disabled {
+        background-color: $disabled;
+    }
 }

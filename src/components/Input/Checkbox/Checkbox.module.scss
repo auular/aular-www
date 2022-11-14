@@ -4,9 +4,9 @@
     margin: 3px 0;
 
     [type="checkbox"] {
-        width: 1.2rem;
-        height: 1.2rem;
-        border: 2.5px solid $blue;
+        width: 1.4rem;
+        height: 1.4rem;
+        border: 2.7px solid $blue;
         vertical-align: middle;
         -webkit-appearance: none;
         background: none;
@@ -35,6 +35,6 @@
         background-image: url("~/public/images/pawprint.png");
         background-size: contain;
         background-repeat: no-repeat;
-        max-width: 0.9rem;
+        max-width: 1rem;
     }
 }

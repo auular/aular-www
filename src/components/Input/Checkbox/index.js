@@ -13,7 +13,7 @@ export const Checkbox = ({ name, label, control, rules, isBold }) => {
   });
 
   return (
-    <div className={styles.checkbox} style={{ fontWeight: `${fontWeight}` }}>
+    <div className={styles.checkbox} style={{ fontWeight: fontWeight }}>
       <input
         {...field}
         type="checkbox"

@@ -12,7 +12,7 @@ const User = () => {
     mode: "onChange",
   });
 
-  const onSubmit = async data => console.log(data);
+  const onSubmit = async (data) => console.log(data);
 
   const checkboxContent = [
     {
@@ -30,14 +30,14 @@ const User = () => {
       <div className={styles.user}>
         <h2>Crie uma conta</h2>
         <Input.Name
-          label="Name"
+          label="Nome"
           name="user_name"
           control={control}
           rules={{ required: true }}
           errors={errors.user_name}
         />
         <Input.Email
-          label="Email"
+          label="E-mail"
           name="user_email"
           control={control}
           rules={{ required: true }}
