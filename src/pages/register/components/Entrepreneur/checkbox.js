@@ -1,4 +1,4 @@
-export const options = [
+export const serviceOptions = [
   {
     content: "Piscina",
     slug: "service_pool",

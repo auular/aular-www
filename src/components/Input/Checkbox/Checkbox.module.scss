@@ -4,8 +4,8 @@
     margin: 3px 0;
 
     [type="checkbox"] {
-        width: 1.4rem;
-        height: 1.4rem;
+        width: 1.3rem;
+        height: 1.3rem;
         border: 2.7px solid $blue;
         vertical-align: middle;
         -webkit-appearance: none;
@@ -32,9 +32,9 @@
     }
 
     [type="checkbox"]:checked::before {
-        background-image: url("~/public/images/pawprint.png");
+        background-image: url("~/public/images/pawprint-black.png");
         background-size: contain;
         background-repeat: no-repeat;
-        max-width: 1rem;
+        max-width: 0.95rem;
     }
 }

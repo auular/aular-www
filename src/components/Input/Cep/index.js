@@ -6,13 +6,13 @@ import Input from "../Default/input";
 import { isValidCEP } from "./validator";
 
 export const CEP = ({ name, label, onResult, control, errors }) => {
-  const INVALID_EMAIL_ERROR_MESSAGE = "CEP inválido";
+  const INVALID_CEP_ERROR_MESSAGE = "CEP inválido";
 
   const rules = {
     required: DEFAULT_ERROR_MESSAGE,
     pattern: {
       value: /^[0-9]{5}[0-9]{3}$/,
-      message: INVALID_EMAIL_ERROR_MESSAGE,
+      message: INVALID_CEP_ERROR_MESSAGE,
     },
   };
 

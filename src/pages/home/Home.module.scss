@@ -1,20 +1,20 @@
 .home {
     &__container {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
     }
 
     &__hero {
         display: inline-grid;
-        grid-template-columns: 1fr 1fr;
-        padding: 50px 100px;
+        grid-template-columns: 2fr 1.5fr;
+        padding: 50px;
 
         &_content {
             max-width: 430px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            justify-content: space-evenly;
+            justify-content: space-around;
 
             span {
                 color: $blue;

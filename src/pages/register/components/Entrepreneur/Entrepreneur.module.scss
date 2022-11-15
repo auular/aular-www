@@ -3,17 +3,19 @@
     border: 2px solid $blue;
     box-shadow: 1px 1px 2px $blue;
     border-radius: 30px;
-    
+
     &__header {
-        display: flex;
-        width: 455px;
+        display: grid;
+        min-width: 455px;
+        grid-template-columns: 3fr 1fr;
         justify-content: space-around;
         align-items: center;
-        margin: 30px 0;
+        margin: 5px 0 30px;
     }
 
     &__footer {
         display: flex;
+        margin-top: 15px;
     }
 }
 
@@ -21,4 +23,67 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px 30px;
+}
+
+.services_provided {
+    min-width: 625px;
+
+    label {
+        font-weight: bold;
+    }
+
+    &__input_number {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 10px;
+    }
+
+    &__average_price {
+        margin: 15px 0;
+        text-align: center;
+
+        &__content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            margin-top: 5px;
+        }
+    }
+
+    &__options {
+        display: grid;
+        margin: 15px 0;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &__pets_accepted {
+        display: grid;
+        margin: 15px 0;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.images_upload {
+    // margin: 60px 0;
+
+    &__input_wrapper {
+        cursor: pointer;
+        border: 1px dashed $black;
+        background-color: $disabled;
+        border-radius: 10px;
+        padding: 30px 200px;
+        display: flex;
+        justify-content: center;
+
+        img {
+            max-width: 30px;
+        }
+
+        input {
+            display: none;
+        }
+    }
+
+    &__input_file {
+        background-color: $disabled;
+    }
 }

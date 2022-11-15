@@ -11,6 +11,10 @@ const nextConfig = {
     prependData: `@import "./sass/main.scss";`,
   },
 
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   async rewrites() {
     return [
       {

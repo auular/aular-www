@@ -8,7 +8,9 @@ import { YellowButton } from "../../../../components/YellowButton";
 import styles from "./Entrepreneur.module.scss";
 
 const Entrepreneur = () => {
-  const methods = useForm({ mode: "all" });
+  const methods = useForm({
+    mode: "all",
+  });
 
   const [currentStep, setStep] = useState();
   const [stepNumber, setStepNumber] = useState();
@@ -61,6 +63,7 @@ const Entrepreneur = () => {
           ) : null}
           <BlueButton
             value={stepNumber === 3 ? "Cadastrar" : "Avançar"}
+            padding={15}
             isActive={!methods.formState.isValid}
           />
         </div>
