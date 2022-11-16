@@ -1,14 +1,9 @@
 import CompanyData from "./CompanyData";
 import ServicesProvided from "./ServicesProvided";
 import ImagesUpload from "./ImagesUpload";
+import FLOW_STEPS from "./flowSteps";
 
-export const FLOW_STEPS = {
-  COMPANY_DATA: "company_data",
-  SERVICES_PROVIDED: "services_provided",
-  IMAGES_UPLOAD: "images_upload",
-};
-
-export const steps = {
+const steps = {
   [FLOW_STEPS.COMPANY_DATA]: {
     component: <CompanyData />,
     stepNumber: 1,
@@ -24,3 +19,5 @@ export const steps = {
     stepNumber: 3,
   },
 };
+
+export default steps;

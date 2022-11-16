@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import { FLOW_STEPS, steps } from "./steps";
+import steps from "./steps";
+import FLOW_STEPS from "./steps/flowSteps";
 import { useStepRegister } from "./useStepRegister";
 import Stepper from "./Stepper";
 import { BlueButton } from "../../../../components/BlueButton";
@@ -23,7 +24,7 @@ const Entrepreneur = () => {
   };
 
   useEffect(() => {
-    const { component, stepNumber } = findStep(FLOW_STEPS.COMPANY_DATA);
+    const { component, stepNumber } = findStep(FLOW_STEPS.IMAGES_UPLOAD);
     setStep(component);
     setStepNumber(stepNumber);
   }, []);
@@ -47,7 +48,7 @@ const Entrepreneur = () => {
           <h2>Cadastre seu hotel</h2>
           <Stepper currentStep={stepNumber} />
         </div>
-        {currentStep}
+        <Suspense fallback={<h1>loading...</h1>}>{currentStep}</Suspense>
         <div
           className={styles.entrepreneur__footer}
           style={{

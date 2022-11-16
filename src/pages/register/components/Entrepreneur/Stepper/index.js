@@ -1,4 +1,4 @@
-import { steps } from "../steps";
+import steps from "../steps";
 import { useStepRegister } from "../useStepRegister";
 import styles from "./Stepper.module.scss";
 
