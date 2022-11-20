@@ -1,0 +1,16 @@
+.feedback_card {
+    background-color: $yellow;
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 265px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    &__client_photo {
+        max-width: 80px;
+        border-radius: 100%;
+        margin: 15px 0;
+    }
+}

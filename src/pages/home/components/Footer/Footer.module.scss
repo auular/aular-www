@@ -1,0 +1,16 @@
+.footer {
+    background-color: $blue;
+    margin: 20px 0 0;
+    display: flex;
+    color: $yellow;
+    max-height: 60px;
+    justify-content: space-around;
+
+    h3 {
+        cursor: pointer;
+    }
+
+    img {
+        align-self: end;
+    }
+}

@@ -1,0 +1,38 @@
+.question {
+    width: 800px;
+    height: 60px;
+    border-bottom: 2px solid $blue;
+    padding-bottom: 20px;
+    cursor: pointer;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__header {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            p {
+                margin-left: 15px;
+            }
+        }
+
+        span {
+            color: $blue;
+        }
+    }
+
+    &__answer {
+        p {
+            padding: 0 30px;
+
+            span {
+                color: $blue;
+                cursor: pointer;
+            }
+        }
+    }
+}

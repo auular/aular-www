@@ -1,0 +1,33 @@
+.our_services {
+    text-align: center;
+
+    &__content {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__card {
+        background-color: $yellow;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        max-width: 275px;
+        margin: 0 25px;
+        padding: 30px;
+
+        img {
+            max-height: 120px;
+        }
+
+        p {
+            font-weight: bold;
+        }
+    }
+
+    h3 {
+        span {
+            color: $blue;
+            cursor: pointer;
+        }
+    }
+}
