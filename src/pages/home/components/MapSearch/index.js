@@ -2,9 +2,10 @@ import Input from "../../../../components/Input";
 import { useForm } from "react-hook-form";
 import { YellowButton } from "../../../../components/YellowButton";
 import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useMapbox from "../../../../services/mapbox";
+import api from "../../../../services/api";
 import "mapbox-gl/dist/mapbox-gl.css";
 import styles from "./MapSearch.module.scss";
 
@@ -18,12 +19,38 @@ const MapSearch = ({ mapboxToken }) => {
   });
 
   const [location, setLocation] = useState();
+  const [hotelsLocations, setHotelLocations] = useState([]);
 
   const router = useRouter();
 
-  const onSubmit = async (data) => {
-    // TODO: mostrar os hoteis no pesquisar
+  const onSubmit = async () => {
+    const { data } = await api.get("/hotels/addresses");
+    // data.map({hotel} => {
+    //   await useMapbox()
+    // })
+    const {
+      hotelUuid,
+      addressStreet,
+      addressDistrict,
+      addressCity,
+      addressState,
+    } = data[0];
+    
+    const location = await useMapbox(
+      mapboxToken,
+      addressStreet,
+      addressDistrict,
+      addressCity,
+      addressState
+    );
+    console.log(location);
+
+    setHotelLocations([{ hotelUuid, location }]);
   };
+
+  useEffect(() => {
+    console.log(hotelsLocations);
+  }, [hotelsLocations]);
 
   const onCEPResult = async (address) => {
     const { logradouro, bairro, cidade, estado } = address;
@@ -74,17 +101,20 @@ const MapSearch = ({ mapboxToken }) => {
             }}
           >
             {location && (
-              <Marker
-                longitude={location[0]}
-                latitude={location[1]}
-                onClick={() => router.push(`/hotel/${"churras"}`)}
-              >
+              <Marker longitude={location[0]} latitude={location[1]}>
                 <img src="/images/dog-pin.png" style={{ maxWidth: "40px" }} />
               </Marker>
             )}
-            <Marker longitude={-100} latitude={40} anchor="bottom">
-              <img src="/images/hotel-pin.png" style={{ maxWidth: "40px" }} />
-            </Marker>
+            {hotelsLocations.map(({ hotelUuid, location }) => (
+              <Marker
+                longitude={location[0]}
+                latitude={location[1]}
+                anchor="bottom"
+                onClick={() => router.push(`/hotel/${hotelUuid}`)}
+              >
+                <img src="/images/hotel-pin.png" style={{ maxWidth: "40px" }} />
+              </Marker>
+            ))}
             <NavigationControl position="bottom-right" />
             <GeolocateControl />
           </Map>

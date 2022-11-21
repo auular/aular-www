@@ -24,7 +24,7 @@ const Entrepreneur = () => {
   };
 
   useEffect(() => {
-    const { component, stepNumber } = findStep(FLOW_STEPS.IMAGES_UPLOAD);
+    const { component, stepNumber } = findStep(FLOW_STEPS.COMPANY_DATA);
     setStep(component);
     setStepNumber(stepNumber);
   }, []);
