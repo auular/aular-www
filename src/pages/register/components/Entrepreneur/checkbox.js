@@ -56,3 +56,33 @@ export const serviceOptions = [
     slug: "service_monitoring",
   },
 ];
+
+export const averagePrice = [
+  {
+    content: "Até R$ 100,00",
+    slug: "up_to_100",
+  },
+  {
+    content: "Até R$ 200,00",
+    slug: "up_to_200",
+  },
+  {
+    content: "Acima de R$ 200,00",
+    slug: "above_200",
+  },
+];
+
+export const petsAccepted = [
+  {
+    content: "Cachorro",
+    slug: "dog",
+  },
+  {
+    content: "Gato",
+    slug: "up_to_200",
+  },
+  {
+    content: "Outros",
+    slug: "others",
+  },
+];

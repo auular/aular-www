@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import Input from "../../../../../components/Input";
-import { serviceOptions } from "../checkbox";
+import { averagePrice, petsAccepted, serviceOptions } from "../checkbox";
 
 import styles from "../Entrepreneur.module.scss";
 
@@ -9,36 +9,6 @@ const ServicesProvided = () => {
     control,
     formState: { errors },
   } = useFormContext();
-
-  const averagePrice = [
-    {
-      content: "Até R$ 100,00",
-      slug: "up_to_100",
-    },
-    {
-      content: "Até R$ 200,00",
-      slug: "up_to_200",
-    },
-    {
-      content: "Acima de R$ 200,00",
-      slug: "above_200",
-    },
-  ];
-
-  const petsAccepted = [
-    {
-      content: "Cachorro",
-      slug: "dog",
-    },
-    {
-      content: "Gato",
-      slug: "up_to_200",
-    },
-    {
-      content: "Outros",
-      slug: "others",
-    },
-  ];
 
   return (
     <div className={styles.services_provided}>

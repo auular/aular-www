@@ -19,12 +19,12 @@ const Entrepreneur = () => {
   const { findStep, getSteps } = useStepRegister();
 
   const onSubmit = async (data) => {
-    if (stepNumber >= 3) return console.log("foi foi", data);
+    if (stepNumber >= 4) return console.log("foi foi", data);
     setStepNumber(stepNumber + 1);
   };
 
   useEffect(() => {
-    const { component, stepNumber } = findStep(FLOW_STEPS.COMPANY_DATA);
+    const { component, stepNumber } = findStep(FLOW_STEPS.HOTEL_DESCRIPTION);
     setStep(component);
     setStepNumber(stepNumber);
   }, []);
@@ -63,7 +63,7 @@ const Entrepreneur = () => {
             />
           ) : null}
           <BlueButton
-            value={stepNumber === 3 ? "Cadastrar" : "Avançar"}
+            value={stepNumber === 4 ? "Cadastrar" : "Avançar"}
             padding={15}
             isActive={!methods.formState.isValid}
           />

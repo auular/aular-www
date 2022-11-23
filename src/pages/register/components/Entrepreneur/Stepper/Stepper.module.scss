@@ -3,12 +3,11 @@
 
     &__content {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
 
         &_container {
             display: grid;
             grid-template-rows: 20px 10px;
-            flex-direction: column;
             place-items: center;
         }
     }
