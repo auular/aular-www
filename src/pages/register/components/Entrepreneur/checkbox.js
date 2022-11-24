@@ -79,7 +79,7 @@ export const petsAccepted = [
   },
   {
     content: "Gato",
-    slug: "up_to_200",
+    slug: "cat",
   },
   {
     content: "Outros",

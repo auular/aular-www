@@ -11,6 +11,10 @@ import styles from "./Entrepreneur.module.scss";
 const Entrepreneur = () => {
   const methods = useForm({
     mode: "all",
+    defaultValues: {
+      services_provided: {},
+      average_price: {},
+    },
   });
 
   const [currentStep, setStep] = useState();

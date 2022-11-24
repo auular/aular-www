@@ -10,6 +10,7 @@ export const Checkbox = ({ name, label, control, rules, isBold }) => {
     name,
     rules,
     control,
+    defaultValue: false,
   });
 
   return (

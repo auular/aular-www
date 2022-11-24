@@ -34,7 +34,7 @@ const ServicesProvided = () => {
           {averagePrice.map((checkbox) => (
             <Input.Checkbox
               key={checkbox.slug}
-              name={checkbox["slug"]}
+              name={`average_price.${checkbox["slug"]}`}
               label={checkbox.content}
               control={control}
               rules={{ required: false }}
@@ -47,7 +47,7 @@ const ServicesProvided = () => {
         {serviceOptions.map((checkbox) => (
           <Input.Checkbox
             key={checkbox.slug}
-            name={checkbox["slug"]}
+            name={`services_provided.${checkbox["slug"]}`}
             label={checkbox.content}
             control={control}
             rules={{ required: false }}
