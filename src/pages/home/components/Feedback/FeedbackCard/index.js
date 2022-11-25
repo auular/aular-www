@@ -6,7 +6,7 @@ const FeedbackCard = ({ imgSrc, stars, feedbackText }) => {
       <img src={imgSrc} className={styles.feedback_card__client_photo} />
       <div>
         {Array.from({ length: stars }, () => (
-            <img src="/images/feedback-star.svg" />
+          <img src="/images/feedback-star.svg" />
         ))}
       </div>
       <p>{feedbackText}</p>

@@ -25,7 +25,12 @@ const Faq = () => {
       <h3>Perguntas Frequentes</h3>
       <div>
         {questions.map(({ question, answer }, number) => (
-          <Question number={number + 1} question={question} answer={answer} />
+          <Question
+            key={question}
+            number={number + 1}
+            question={question}
+            answer={answer}
+          />
         ))}
       </div>
     </div>

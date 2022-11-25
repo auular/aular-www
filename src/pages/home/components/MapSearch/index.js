@@ -2,7 +2,7 @@ import Input from "../../../../components/Input";
 import { useForm } from "react-hook-form";
 import { YellowButton } from "../../../../components/YellowButton";
 import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import useMapbox from "../../../../services/mapbox";
 import api from "../../../../services/api";
@@ -25,32 +25,29 @@ const MapSearch = ({ mapboxToken }) => {
 
   const onSubmit = async () => {
     const { data } = await api.get("/hotels/addresses");
-    // data.map({hotel} => {
-    //   await useMapbox()
-    // })
-    const {
-      hotelUuid,
-      addressStreet,
-      addressDistrict,
-      addressCity,
-      addressState,
-    } = data[0];
-    
-    const location = await useMapbox(
-      mapboxToken,
-      addressStreet,
-      addressDistrict,
-      addressCity,
-      addressState
+    const hotels = await Promise.all(
+      data.map(
+        async ({
+          hotelUuid,
+          addressStreet,
+          addressDistrict,
+          addressCity,
+          addressState,
+        }) => {
+          const location = await useMapbox(
+            mapboxToken,
+            addressStreet,
+            addressDistrict,
+            addressCity,
+            addressState
+          );
+
+          return { location, hotelUuid };
+        }
+      )
     );
-    console.log(location);
-
-    setHotelLocations([{ hotelUuid, location }]);
+    setHotelLocations(hotels);
   };
-
-  useEffect(() => {
-    console.log(hotelsLocations);
-  }, [hotelsLocations]);
 
   const onCEPResult = async (address) => {
     const { logradouro, bairro, cidade, estado } = address;
@@ -107,6 +104,7 @@ const MapSearch = ({ mapboxToken }) => {
             )}
             {hotelsLocations.map(({ hotelUuid, location }) => (
               <Marker
+                key={hotelUuid}
                 longitude={location[0]}
                 latitude={location[1]}
                 anchor="bottom"

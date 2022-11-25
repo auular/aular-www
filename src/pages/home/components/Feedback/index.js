@@ -10,8 +10,9 @@ const Feedback = () => {
         consumidores reais
       </h2>
       <div className={styles.feedback__content}>
-        {feedbacks.map(({ imgSrc, stars, feedbackText }) => (
+        {feedbacks.map(({ imgSrc, stars, feedbackText }, id) => (
           <FeedbackCard
+            key={id}
             imgSrc={imgSrc}
             stars={stars}
             feedbackText={feedbackText}
