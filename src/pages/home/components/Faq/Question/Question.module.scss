@@ -3,7 +3,6 @@
     height: 60px;
     border-bottom: 2px solid $blue;
     padding-bottom: 20px;
-    cursor: pointer;
 
     &__content {
         display: flex;
@@ -14,6 +13,7 @@
             display: flex;
             align-items: center;
             justify-content: space-evenly;
+            cursor: pointer;
 
             p {
                 margin-left: 15px;
@@ -23,6 +23,10 @@
         span {
             color: $blue;
         }
+
+        &__bottom_arrow {
+            transition: all .5s ease-in;
+        }
     }
 
     &__answer {
@@ -31,7 +35,6 @@
 
             span {
                 color: $blue;
-                cursor: pointer;
             }
         }
     }
