@@ -51,14 +51,14 @@ export default function Login() {
                 isBold={true}
               />
               <BlueButton value="Fazer login" margin="10px 0" type="submit" />
-              <Link href={"/"}>
+              <Link href="/">
                 <a className={styles.login__form__content__forgot_password}>
                   Esqueceu sua senha?
                 </a>
               </Link>
               <p className={styles.login__form__content__create_account}>
                 Não tem uma conta?
-                <Link href="/">
+                <Link href="/register">
                   <span> Crie uma</span>
                 </Link>
               </p>

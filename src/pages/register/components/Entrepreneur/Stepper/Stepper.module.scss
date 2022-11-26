@@ -1,9 +1,9 @@
 .stepper {
-    width: 150px;
 
     &__content {
         display: flex;
         justify-content: space-between;
+        gap: 10px;
 
         &_container {
             display: grid;

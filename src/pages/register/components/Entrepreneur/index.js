@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import steps from "./steps";
-import FLOW_STEPS from "./steps/flowSteps";
+import { FLOW_STEPS } from "./steps";
 import { useStepRegister } from "./useStepRegister";
 import Stepper from "./Stepper";
 import { BlueButton } from "../../../../components/BlueButton";
@@ -12,6 +12,7 @@ const Entrepreneur = () => {
   const methods = useForm({
     mode: "all",
     defaultValues: {
+      hotel: {},
       services_provided: {},
       average_price: {},
     },
@@ -23,7 +24,10 @@ const Entrepreneur = () => {
   const { findStep, getSteps } = useStepRegister();
 
   const onSubmit = async (data) => {
-    if (stepNumber >= 4) return console.log("foi foi", data);
+    if (stepNumber >= getSteps(steps).length) {
+      return console.log("foi foi", data);
+    }
+
     setStepNumber(stepNumber + 1);
   };
 
@@ -67,7 +71,9 @@ const Entrepreneur = () => {
             />
           ) : null}
           <BlueButton
-            value={stepNumber === 4 ? "Cadastrar" : "Avançar"}
+            value={
+              stepNumber === getSteps(steps).length ? "Cadastrar" : "Avançar"
+            }
             padding={15}
             isActive={!methods.formState.isValid}
           />

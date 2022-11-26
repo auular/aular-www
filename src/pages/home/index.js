@@ -6,8 +6,8 @@ import Link from "next/link";
 import OurServices from "./components/OurServices";
 import Feedback from "./components/Feedback";
 import Faq from "./components/Faq";
-import styles from "./Home.module.scss";
 import Footer from "./components/Footer";
+import styles from "./Home.module.scss";
 
 export default function Home({ mapboxToken }) {
   return (

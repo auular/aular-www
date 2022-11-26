@@ -2,9 +2,10 @@ import Input from "../../../../components/Input";
 import { useForm } from "react-hook-form";
 import { YellowButton } from "../../../../components/YellowButton";
 import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useMapbox from "../../../../services/mapbox";
+import useCoordinates from "../../../../services/coordinates";
 import api from "../../../../services/api";
 import "mapbox-gl/dist/mapbox-gl.css";
 import styles from "./MapSearch.module.scss";
@@ -18,7 +19,7 @@ const MapSearch = ({ mapboxToken }) => {
     mode: "onChange",
   });
 
-  const [location, setLocation] = useState();
+  const [userLocation, setUserLocation] = useState();
   const [hotelsLocations, setHotelLocations] = useState([]);
 
   const router = useRouter();
@@ -26,39 +27,17 @@ const MapSearch = ({ mapboxToken }) => {
   const onSubmit = async () => {
     const { data } = await api.get("/hotels/addresses");
     const hotels = await Promise.all(
-      data.map(
-        async ({
-          hotelUuid,
-          addressStreet,
-          addressDistrict,
-          addressCity,
-          addressState,
-        }) => {
-          const location = await useMapbox(
-            mapboxToken,
-            addressStreet,
-            addressDistrict,
-            addressCity,
-            addressState
-          );
-
-          return { location, hotelUuid };
-        }
-      )
-    );
+      data.map(async ({ hotelUuid, addressCode }) => {
+        const coordinates = await useCoordinates(addressCode);
+        return { location: coordinates, hotelUuid };
+      })
+      );
     setHotelLocations(hotels);
   };
 
-  const onCEPResult = async (address) => {
-    const { logradouro, bairro, cidade, estado } = address;
-    const data = await useMapbox(
-      mapboxToken,
-      logradouro,
-      bairro,
-      cidade,
-      estado
-    );
-    setLocation(data);
+  const onCEPResult = async ({ cep }) => {
+    const coordinates = await useCoordinates(cep);
+    setUserLocation(coordinates);
   };
 
   return (
@@ -97,16 +76,16 @@ const MapSearch = ({ mapboxToken }) => {
               zoom: 3,
             }}
           >
-            {location && (
-              <Marker longitude={location[0]} latitude={location[1]}>
+            {userLocation && (
+              <Marker longitude={userLocation.longitude} latitude={userLocation.latitude}>
                 <img src="/images/dog-pin.png" style={{ maxWidth: "40px" }} />
               </Marker>
             )}
             {hotelsLocations.map(({ hotelUuid, location }) => (
               <Marker
                 key={hotelUuid}
-                longitude={location[0]}
-                latitude={location[1]}
+                longitude={location.longitude}
+                latitude={location.latitude}
                 anchor="bottom"
                 onClick={() => router.push(`/hotel/${hotelUuid}`)}
               >
