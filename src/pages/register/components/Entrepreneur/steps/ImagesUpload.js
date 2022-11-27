@@ -1,42 +1,23 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { resolve } from "styled-jsx/css";
+import { useFormContext } from "react-hook-form";
 import styles from "../Entrepreneur.module.scss";
 
 const ImagesUpload = () => {
+  const { getValues, setValue } = useFormContext();
+
   const [files, setFiles] = useState([]);
   const [filePreview, setListURL] = useState([]);
 
   const handleFile = ({ target }) => {
     const [newFile] = target.files;
-    const addFile = [...files, newFile];
-    setFiles(addFile);
-  };
 
-  const convertToBase64 = (file) => {
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        resolve(reader.result);
-      };
-    });
-  };
+    if (files.length >= 3) return alert("Limite de imagens atingido!")
 
-  const handleUpload = async () => {
-    const [file] = files;
-    const convertedFile = await convertToBase64(file);
-
-    const imageUrl = await axios.post("http://localhost:3000/api/upload", {
-      image: convertedFile,
-      imageName: file.name,
-    });
-
-    //TODO: enviar o imageUrl pro banco
+    setFiles([...files, newFile])
+    setValue("files", [...getValues("files"), newFile]);
   };
 
   useEffect(() => {
-    console.log(files);
     files.map((file) => {
       const objectUrl = URL.createObjectURL(file);
       setListURL([...filePreview, objectUrl]);
@@ -60,10 +41,11 @@ const ImagesUpload = () => {
         />
       </label>
       <p>Arquivos selecionados</p>
-      {filePreview.map((file) => (
-        <img src={file} />
-      ))}
-      <button onClick={handleUpload}>Subir</button>
+      <div className={styles.images_upload__preview}>
+        {filePreview.map((file) => (
+          <img src={file} className={styles.images_upload__preview_images} />
+        ))}
+      </div>
     </div>
   );
 };

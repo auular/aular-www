@@ -74,8 +74,6 @@
 }
 
 .images_upload {
-    // margin: 60px 0;
-
     &__input_wrapper {
         cursor: pointer;
         border: 1px dashed $black;
@@ -96,5 +94,15 @@
 
     &__input_file {
         background-color: $disabled;
+    }
+
+    &__preview {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        &_images {
+            max-width: 100px;
+        }
     }
 }

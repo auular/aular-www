@@ -7,6 +7,7 @@ import Stepper from "./Stepper";
 import { BlueButton } from "../../../../components/BlueButton";
 import { YellowButton } from "../../../../components/YellowButton";
 import styles from "./Entrepreneur.module.scss";
+import axios from "axios";
 
 const Entrepreneur = () => {
   const methods = useForm({
@@ -15,6 +16,7 @@ const Entrepreneur = () => {
       hotel: {},
       services_provided: {},
       average_price: {},
+      files: [],
     },
   });
 
@@ -25,14 +27,57 @@ const Entrepreneur = () => {
 
   const onSubmit = async (data) => {
     if (stepNumber >= getSteps(steps).length) {
+      handleUpload(methods.getValues("files"));
       return console.log("foi foi", data);
     }
 
     setStepNumber(stepNumber + 1);
   };
 
+  const convertToBase64 = (file) => {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+    });
+  };
+
+  const getSeparator = (index) => {
+    return index === 0 ? "" : "-";
+  };
+
+  const handleUpload = async (files) => {
+    files.map(async (file) => {
+      const convertedFile = await convertToBase64(file);
+
+      const hotelName = methods
+        .getValues("hotel.name")
+        ?.toString()
+        .toLowerCase()
+        ?.split(" ");
+
+      // TODO: extrair essa lógica para também usar quando buscar do banco
+      const hotelSlug = hotelName?.reduce(
+        (acc, value, index) => acc + `${getSeparator(index)}` + value,
+        ""
+      );
+
+      const imageUrl = await axios.post("http://localhost:3000/api/v1/upload", {
+        image: convertedFile,
+        imageName: file.name,
+        hotelSlug,
+      });
+
+      console.log(imageUrl);
+    });
+
+    //TODO: enviar o imageUrl pro banco
+  };
+
   useEffect(() => {
-    const { component, stepNumber } = findStep(FLOW_STEPS.COMPANY_DATA);
+    const { component, stepNumber } = findStep(FLOW_STEPS.SERVICES_PROVIDED);
     setStep(component);
     setStepNumber(stepNumber);
   }, []);

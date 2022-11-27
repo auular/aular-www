@@ -5,6 +5,8 @@ import { Password } from "./Password";
 import { CEP } from "./Cep";
 import { Text } from "./Text";
 import { Number } from "./Number";
+import { CNPJ } from "./Cnpj";
+import { Textarea } from "./Textarea";
 
 export const DEFAULT_ERROR_MESSAGE = "Preencha este campo";
 
@@ -16,4 +18,6 @@ export default {
   CEP,
   Text,
   Number,
+  CNPJ,
+  Textarea,
 };

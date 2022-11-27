@@ -2,9 +2,8 @@ import Input from "../../../../components/Input";
 import { useForm } from "react-hook-form";
 import { YellowButton } from "../../../../components/YellowButton";
 import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
-import useMapbox from "../../../../services/mapbox";
 import useCoordinates from "../../../../services/coordinates";
 import api from "../../../../services/api";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -31,7 +30,7 @@ const MapSearch = ({ mapboxToken }) => {
         const coordinates = await useCoordinates(addressCode);
         return { location: coordinates, hotelUuid };
       })
-      );
+    );
     setHotelLocations(hotels);
   };
 
@@ -60,8 +59,6 @@ const MapSearch = ({ mapboxToken }) => {
         </div>
         <div className={styles.map_search__form__content}>
           <Map
-            id="mapinha"
-            center={location}
             mapboxAccessToken={mapboxToken}
             mapStyle="mapbox://styles/mapbox/streets-v12"
             reuseMaps={true}
@@ -77,7 +74,10 @@ const MapSearch = ({ mapboxToken }) => {
             }}
           >
             {userLocation && (
-              <Marker longitude={userLocation.longitude} latitude={userLocation.latitude}>
+              <Marker
+                longitude={userLocation.longitude}
+                latitude={userLocation.latitude}
+              >
                 <img src="/images/dog-pin.png" style={{ maxWidth: "40px" }} />
               </Marker>
             )}

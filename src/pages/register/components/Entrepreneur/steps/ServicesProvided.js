@@ -8,7 +8,29 @@ const ServicesProvided = () => {
   const {
     control,
     formState: { errors },
+    getValues,
+    setValue,
   } = useFormContext();
+
+  const isAtLeastOneChecked = () => {
+    const services = getValues("servicesProvided");
+
+    const checkeds = serviceOptions.filter(({ slug }) => {
+      return services[slug] === true;
+    });
+
+    return checkeds.length >= 1;
+  };
+
+  const isOnlyOneChecked = () => {
+    const prices = getValues("averagePrice");
+
+    const checkeds = averagePrice.filter(({ slug }) => {
+      return prices[slug] === true;
+    });
+
+    return checkeds.length === 1;
+  };
 
   return (
     <div className={styles.services_provided}>
@@ -34,10 +56,12 @@ const ServicesProvided = () => {
           {averagePrice.map((checkbox) => (
             <Input.Checkbox
               key={checkbox.slug}
-              name={`average_price.${checkbox["slug"]}`}
+              name={`averagePrice.${checkbox["slug"]}`}
               label={checkbox.content}
               control={control}
-              rules={{ required: false }}
+              rules={{
+                validate: isOnlyOneChecked,
+              }}
             />
           ))}
         </div>
@@ -47,10 +71,10 @@ const ServicesProvided = () => {
         {serviceOptions.map((checkbox) => (
           <Input.Checkbox
             key={checkbox.slug}
-            name={`services_provided.${checkbox["slug"]}`}
+            name={`servicesProvided.${checkbox["slug"]}`}
             label={checkbox.content}
             control={control}
-            rules={{ required: false }}
+            rules={{ validate: isAtLeastOneChecked }}
           />
         ))}
       </div>

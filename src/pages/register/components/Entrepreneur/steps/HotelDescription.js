@@ -8,12 +8,12 @@ const HotelDescription = () => {
   } = useFormContext();
 
   return (
-    <Input.Text
+    <Input.Textarea
       label="Insira uma descrição para seu hotel"
       name="hotel.description"
       control={control}
       rules={{ required: true }}
-      errors={errors?.hotel?.description}
+      errors={errors.hotel?.description}
     />
   );
 };

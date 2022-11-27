@@ -11,19 +11,19 @@ export default async function handler(req, res) {
   const base64Image = req.body.image;
   const imageName = req.body.imageName;
   const type = req.body.type;
+  const slug = req.body.hotelSlug;
 
   try {
-    const response = await upload(imageName, base64Image, type);
+    const response = await upload(imageName, base64Image, type, slug);
     res.send({ link: response });
   } catch (err) {
     return next(new Error(`Error uploading image: ${imageName}`));
   }
-
 }
 
-async function upload(imageName, base64Image, type) {
+async function upload(imageName, base64Image, type, slug) {
   const params = {
-    Bucket: `${bucketName}`,
+    Bucket: `${bucketName}/${slug}`,
     Key: imageName,
     ContentType: type,
     Body: new Buffer.from(
