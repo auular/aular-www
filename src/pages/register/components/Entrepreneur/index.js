@@ -72,12 +72,10 @@ const Entrepreneur = () => {
 
       console.log(imageUrl);
     });
-
-    //TODO: enviar o imageUrl pro banco
   };
 
   useEffect(() => {
-    const { component, stepNumber } = findStep(FLOW_STEPS.SERVICES_PROVIDED);
+    const { component, stepNumber } = findStep(FLOW_STEPS.COMPANY_DATA);
     setStep(component);
     setStepNumber(stepNumber);
   }, []);
