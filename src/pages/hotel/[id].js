@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 import { Header } from "../../components/Header";
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import {
   serviceOptions,
   petsAccepted,
@@ -39,7 +39,7 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
 
   if (status === "authenticated")
     return (
-      <>
+      <Suspense fallback={<h2>Loading...</h2>}>
         <Header />
         <div className={styles.hotel}>
           <div className={styles.hotel__header}>
@@ -107,7 +107,7 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
             </div> */}
           </div>
         </div>
-      </>
+      </Suspense>
     );
 
   return <h2>Loading...</h2>;

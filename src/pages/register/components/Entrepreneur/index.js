@@ -12,6 +12,7 @@ import { useSlug } from "../../../../hooks/useSlug";
 import api from "../../../../services/api";
 import { useBooleanValue } from "../../../hotel/hooks/useBooleanValue";
 import { averagePrice } from "./checkbox";
+import { useRouter } from "next/router";
 
 const Entrepreneur = () => {
   const methods = useForm({
@@ -27,6 +28,8 @@ const Entrepreneur = () => {
   const [currentStep, setStep] = useState();
   const [stepNumber, setStepNumber] = useState();
   const [hotelId, setHotelId] = useState();
+
+  const router = useRouter();
 
   const { findStep, getSteps } = useStepRegister();
 
@@ -56,6 +59,7 @@ const Entrepreneur = () => {
 
       try {
         const res = await api.post(`/hotels/allFields/${hotelId}`, payload);
+        router.push(`/hotel/${hotelId}`);
         console.log(res);
       } catch (err) {
         console.log(err);
