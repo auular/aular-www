@@ -23,6 +23,7 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
   const { getContentByBoolean } = useBooleanValue();
 
   const hotelImage = useBuffer(imageBuffer);
+  console.log(hotelImage)
 
   const servicesProvidedByHotel = getContentByBoolean(
     servicesProvided,
@@ -83,7 +84,7 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
               </li> */}
             </ul>
             <div id="#" className={styles.hotel__content__info}>
-              {hotelImage ?? <img src="/images/dog-playing.svg" />}
+              {hotelImage === "" ? <img src="/images/dog-playing.svg" /> : hotelImage}
               <div className={styles.hotel__content__info_description}>
                 <h3>Sobre o {hotel.name}</h3>
                 <p>{hotel.description}</p>
@@ -144,10 +145,12 @@ export async function getStaticProps({ params }) {
     console.log(err);
   }
 
+  const imageBuffer = res.data?.buffer ?? "";
+
   return {
     props: {
       hotelInfo: data,
-      imageBuffer: res.data.buffer,
+      imageBuffer,
     },
   };
 }
