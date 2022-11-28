@@ -81,6 +81,7 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
             </ul>
             <div id="#" className={styles.hotel__content__info}>
               {/* {hotelImage} */}
+              <img src="/images/dog-playing.svg"/>
               <div className={styles.hotel__content__info_description}>
                 <h3>Sobre o {hotel.name}</h3>
                 <p>{hotel.description}</p>

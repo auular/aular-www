@@ -11,15 +11,12 @@ const authOptions = {
       type: "credentials",
       credentials: {},
       async authorize(credentials, req) {
-        const { email, password } = credentials;
-        // const { data } = await api.post("/hotels/autentication", credentials);
         const { data } = await api.post(
           "/petTutors/autentication",
           credentials
         );
 
         if (data) {
-          data.role = data?.petTutorId ? "pet_tutor" : "hotel";
           return data;
         }
 
