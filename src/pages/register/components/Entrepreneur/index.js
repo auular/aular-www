@@ -8,27 +8,59 @@ import { BlueButton } from "../../../../components/BlueButton";
 import { YellowButton } from "../../../../components/YellowButton";
 import styles from "./Entrepreneur.module.scss";
 import axios from "axios";
+import { useSlug } from "../../../../hooks/useSlug";
+import api from "../../../../services/api";
+import { useBooleanValue } from "../../../hotel/hooks/useBooleanValue";
+import { averagePrice } from "./checkbox";
 
 const Entrepreneur = () => {
   const methods = useForm({
     mode: "all",
     defaultValues: {
       hotel: {},
-      services_provided: {},
-      average_price: {},
+      servicesProvided: {},
+      averagePrice: {},
       files: [],
     },
   });
 
   const [currentStep, setStep] = useState();
   const [stepNumber, setStepNumber] = useState();
+  const [hotelId, setHotelId] = useState();
 
   const { findStep, getSteps } = useStepRegister();
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (payload) => {
+    if (stepNumber === 2) {
+      const { hotel } = payload;
+      try {
+        const { data } = await api.post("/hotels", hotel);
+        setHotelId(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
     if (stepNumber >= getSteps(steps).length) {
       handleUpload(methods.getValues("files"));
-      return console.log("foi foi", data);
+      const { getContentByBoolean, getBooleans } = useBooleanValue();
+
+      const selectedPrice = getBooleans(payload.averagePrice);
+      const [value] = getContentByBoolean(selectedPrice, averagePrice, "00");
+
+      const hotel = { hotelId };
+
+      payload.servicesProvided.averagePrice = value.content;
+      payload.servicesProvided.hotel = hotel;
+      payload.address.hotel = hotel;
+
+      try {
+        const res = await api.post(`/hotels/allFields/${hotelId}`, payload);
+        console.log(res);
+      } catch (err) {
+        console.log(err);
+      }
+      return console.log("foi foi", payload);
     }
 
     setStepNumber(stepNumber + 1);
@@ -44,25 +76,14 @@ const Entrepreneur = () => {
     });
   };
 
-  const getSeparator = (index) => {
-    return index === 0 ? "" : "-";
-  };
-
   const handleUpload = async (files) => {
     files.map(async (file) => {
       const convertedFile = await convertToBase64(file);
 
-      const hotelName = methods
-        .getValues("hotel.name")
-        ?.toString()
-        .toLowerCase()
-        ?.split(" ");
+      const hotelName = methods.getValues("hotel.name")?.toString();
 
-      // TODO: extrair essa lógica para também usar quando buscar do banco
-      const hotelSlug = hotelName?.reduce(
-        (acc, value, index) => acc + `${getSeparator(index)}` + value,
-        ""
-      );
+      const { buildSlugByName } = useSlug();
+      const hotelSlug = buildSlugByName(hotelName);
 
       const imageUrl = await axios.post("http://localhost:3000/api/v1/upload", {
         image: convertedFile,
@@ -70,7 +91,7 @@ const Entrepreneur = () => {
         hotelSlug,
       });
 
-      console.log(imageUrl);
+      // console.log(imageUrl);
     });
   };
 

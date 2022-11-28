@@ -26,9 +26,9 @@ const MapSearch = ({ mapboxToken }) => {
   const onSubmit = async () => {
     const { data } = await api.get("/hotels/addresses");
     const hotels = await Promise.all(
-      data.map(async ({ hotelUuid, addressCode }) => {
+      data.map(async ({ hotelId, addressCode }) => {
         const coordinates = await useCoordinates(addressCode);
-        return { location: coordinates, hotelUuid };
+        return { location: coordinates, hotelId };
       })
     );
     setHotelLocations(hotels);
@@ -81,13 +81,14 @@ const MapSearch = ({ mapboxToken }) => {
                 <img src="/images/dog-pin.png" style={{ maxWidth: "40px" }} />
               </Marker>
             )}
-            {hotelsLocations.map(({ hotelUuid, location }) => (
+            {hotelsLocations.map(({ hotelId, location }) => (
               <Marker
-                key={hotelUuid}
+                key={hotelId + new Date()}
                 longitude={location.longitude}
                 latitude={location.latitude}
                 anchor="bottom"
-                onClick={() => router.push(`/hotel/${hotelUuid}`)}
+                style={{ cursor: "pointer" }}
+                onClick={() => router.push(`/hotel/${hotelId}`)}
               >
                 <img src="/images/hotel-pin.png" style={{ maxWidth: "40px" }} />
               </Marker>

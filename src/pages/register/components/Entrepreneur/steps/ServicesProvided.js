@@ -37,10 +37,10 @@ const ServicesProvided = () => {
       <div className={styles.services_provided__input_number}>
         <Input.Number
           label="Nº de hóspedes"
-          name="guests_number"
+          name="servicesProvided.guestsNumber"
           control={control}
           rules={{ required: true }}
-          errors={errors.guests_number}
+          errors={errors.servicesProvided?.guestsNumber}
         />
         <Input.Number
           label="Nº de quartos"
@@ -83,7 +83,7 @@ const ServicesProvided = () => {
         {petsAccepted.map((checkbox) => (
           <Input.Checkbox
             key={checkbox.slug}
-            name={checkbox["slug"]}
+            name={`servicesProvided.${checkbox["slug"]}`}
             label={checkbox.content}
             control={control}
             rules={{ required: false }}

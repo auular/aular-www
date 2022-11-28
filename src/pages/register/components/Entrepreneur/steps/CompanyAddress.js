@@ -11,56 +11,56 @@ const CompanyAddress = () => {
   } = useFormContext();
 
   const onCEPResult = async (address) => {
-    setValue("partner_address", address.logradouro);
-    setValue("partner_state", address.uf);
-    setValue("partner_city", address.localidade);
-    setValue("partner_neighborhood", address.bairro);
+    setValue("address.addressStreet", address.logradouro);
+    setValue("address.addressState", address.uf);
+    setValue("address.addressCity", address.localidade);
+    setValue("address.addressDistrict", address.bairro);
   };
 
   return (
     <div className={styles.company_address}>
       <Input.CEP
         label="CEP"
-        name="partner_cep"
+        name="address.addressCode"
         control={control}
         rules={{ required: true }}
-        errors={errors.partner_cep}
+        errors={errors.address?.addressCode}
         onResult={onCEPResult}
       />
       <Input.Text
         label="Logradouro"
-        name="partner_address"
+        name="address.addressStreet"
         control={control}
         rules={{ required: true }}
-        errors={errors.partner_address}
+        errors={errors.address?.addressStreet}
       />
       <Input.Text
         label="Estado"
-        name="partner_state"
+        name="address.addressState"
         control={control}
         rules={{ required: true }}
-        errors={errors.partner_state}
+        errors={errors.address?.addressState}
       />
       <Input.Text
         label="Cidade"
-        name="partner_city"
+        name="address.addressCity"
         control={control}
         rules={{ required: true }}
-        errors={errors.partner_city}
+        errors={errors.address?.addressCity}
       />
       <Input.Text
         label="Bairro"
-        name="partner_neighborhood"
+        name="address.addressDistrict"
         control={control}
         rules={{ required: true }}
-        errors={errors.partner_neighborhood}
+        errors={errors.address?.addressDistrict}
       />
       <Input.Number
         label="Número"
-        name="partner_number"
+        name="address.addressNumber"
         control={control}
         rules={{ required: true }}
-        errors={errors.partner_number}
+        errors={errors.address?.addressNumber}
       />
     </div>
   );

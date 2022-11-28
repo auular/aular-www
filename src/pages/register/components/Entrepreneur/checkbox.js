@@ -1,59 +1,59 @@
 export const serviceOptions = [
   {
     content: "Piscina",
-    slug: "service_pool",
+    slug: "servicePool",
   },
   {
     content: "Parquinho",
-    slug: "service_playground",
+    slug: "servicePlayground",
   },
   {
     content: "Brinquedos",
-    slug: "service_toys",
+    slug: "serviceToys",
   },
   {
     content: "Banho",
-    slug: "service_bath",
+    slug: "serviceBath",
   },
   {
     content: "Tosa",
-    slug: "service_leathering",
+    slug: "serviceLeathering",
   },
   {
     content: "Dormitórios",
-    slug: "service_bedroom",
+    slug: "serviceBedroom",
   },
   {
     content: "Refeiçoes",
-    slug: "service_food",
+    slug: "serviceFood",
   },
   {
     content: "Visitação",
-    slug: "service_visitation",
+    slug: "serviceVisitation",
   },
   {
     content: "Câmeras",
-    slug: "service_cam",
+    slug: "serviceCam",
   },
   {
     content: "Exercícios",
-    slug: "service_exercises",
+    slug: "serviceExercises",
   },
   {
     content: "Adestramento",
-    slug: "service_training",
+    slug: "serviceTraining",
   },
   {
     content: "Dentista",
-    slug: "service_dentist",
+    slug: "serviceDentist",
   },
   {
     content: "Veterinário",
-    slug: "service_vet",
+    slug: "serviceVet",
   },
   {
     content: "Monitoração",
-    slug: "service_monitoring",
+    slug: "serviceMonitoring",
   },
 ];
 
@@ -75,14 +75,14 @@ export const averagePrice = [
 export const petsAccepted = [
   {
     content: "Cachorro",
-    slug: "dog",
+    slug: "dogsAcepted",
   },
   {
     content: "Gato",
-    slug: "cat",
+    slug: "catsAcepted",
   },
   {
     content: "Outros",
-    slug: "others",
+    slug: "othersAcepted",
   },
 ];

@@ -8,7 +8,7 @@ export const Password = ({ name, label, control, errors }) => {
   const rules = {
     required: DEFAULT_ERROR_MESSAGE,
     pattern: {
-      value: /^(?=.*\d).{8,}$/,
+      value: /^(?=[A-Z]*).{8,}$/,
       message: INVALID_PASSWORD_ERROR_MESSAGE,
     },
   };

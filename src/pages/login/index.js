@@ -1,4 +1,6 @@
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { BlueButton } from "../../components/BlueButton";
 import { Header } from "../../components/Header";
@@ -9,17 +11,40 @@ export default function Login() {
   const {
     control,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm({
     mode: "onBlur",
   });
+
+  const router = useRouter();
 
   const checkboxContent = {
     content: "Manter conectado neste dispositivo",
     slug: "stay_connected",
   };
 
-  const onSubmit = async (data) => console.log(data);
+  const onSubmit = async ({ email, password }) => {
+    const res = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+
+    if (res.ok) {
+      return router.back();
+    }
+
+    const responseErrors = {
+      401: "Verifique se suas informações estão corretas",
+      404: "Email não encontrado",
+    };
+
+    setError("password", {
+      type: "custom",
+      message: responseErrors[res.status],
+    });
+  };
 
   return (
     <>
@@ -31,17 +56,17 @@ export default function Login() {
               <h2>Login</h2>
               <Input.Email
                 label="Email"
-                name="user_email"
+                name="email"
                 control={control}
                 rules={{ required: true }}
-                errors={errors.user_email}
+                errors={errors.email}
               />
               <Input.Password
                 label="Senha"
-                name="user_password"
+                name="password"
                 control={control}
                 rules={{ required: true }}
-                errors={errors.user_password}
+                errors={errors.password}
               />
               <Input.Checkbox
                 label={checkboxContent["content"]}
@@ -49,6 +74,10 @@ export default function Login() {
                 control={control}
                 rules={{ required: false }}
                 isBold={true}
+              />
+              <Input.Error
+                isActive={errors?.login}
+                message={errors.login?.message}
               />
               <BlueButton value="Fazer login" margin="10px 0" type="submit" />
               <Link href="/">

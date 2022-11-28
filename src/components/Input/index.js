@@ -7,6 +7,7 @@ import { Text } from "./Text";
 import { Number } from "./Number";
 import { CNPJ } from "./Cnpj";
 import { Textarea } from "./Textarea";
+import { Error } from "./Error";
 
 export const DEFAULT_ERROR_MESSAGE = "Preencha este campo";
 
@@ -20,4 +21,5 @@ export default {
   Number,
   CNPJ,
   Textarea,
+  Error,
 };
