@@ -12,6 +12,7 @@ import axios from "axios";
 import api from "../../services/api";
 
 import styles from "./Hotel.module.scss";
+import { useBuffer } from "./hooks/useBuffer";
 
 export default function Hotel({ hotelInfo, imageBuffer }) {
   const { status, data } = useSession();
@@ -20,6 +21,8 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
 
   const { hotel, address, servicesProvided } = hotelInfo;
   const { getContentByBoolean } = useBooleanValue();
+
+  const hotelImage = useBuffer(imageBuffer);
 
   const servicesProvidedByHotel = getContentByBoolean(
     servicesProvided,
@@ -80,8 +83,7 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
               </li> */}
             </ul>
             <div id="#" className={styles.hotel__content__info}>
-              {/* {hotelImage} */}
-              <img src="/images/dog-playing.svg"/>
+              {hotelImage ?? <img src="/images/dog-playing.svg" />}
               <div className={styles.hotel__content__info_description}>
                 <h3>Sobre o {hotel.name}</h3>
                 <p>{hotel.description}</p>
@@ -145,7 +147,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       hotelInfo: data,
-      // imageBuffer: res.data.buffer,
+      imageBuffer: res.data.buffer,
     },
   };
 }
