@@ -30,7 +30,7 @@
     "react-input-mask": "^2.0.4",
     "react-map-gl": "^7.0.19",
     "sass": "^1.55.0",
-    "serverless": "2.72.2"
+    "serverless": "^3.26.0"
   },
   "devDependencies": {
     "eslint": "8.24.0",
