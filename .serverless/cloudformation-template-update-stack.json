@@ -1,0 +1,277 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "The AWS CloudFormation template for this Serverless application",
+  "Resources": {
+    "ServerlessDeploymentBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "IsProduction",
+            "Value": "false"
+          },
+          {
+            "Key": "Provisioner",
+            "Value": "cloudformation://github.com/auular/auular-www"
+          },
+          {
+            "Key": "DataClassification",
+            "Value": "Sierra"
+          },
+          {
+            "Key": "ResiliencyTier",
+            "Value": "Bronze"
+          },
+          {
+            "Key": "Application",
+            "Value": "auular-www"
+          }
+        ]
+      }
+    },
+    "ServerlessDeploymentBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "ServerlessDeploymentBucket"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Effect": "Deny",
+              "Principal": "*",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "ServerlessDeploymentBucket"
+                      },
+                      "/*"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::",
+                      {
+                        "Ref": "ServerlessDeploymentBucket"
+                      }
+                    ]
+                  ]
+                }
+              ],
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": false
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "WebAppS3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": "dev-auular-www",
+        "Tags": [
+          {
+            "Key": "IsProduction",
+            "Value": "false"
+          },
+          {
+            "Key": "Provisioner",
+            "Value": "cloudformation://github.com/auular/auular-www"
+          },
+          {
+            "Key": "DataClassification",
+            "Value": "Sierra"
+          },
+          {
+            "Key": "ResiliencyTier",
+            "Value": "Bronze"
+          },
+          {
+            "Key": "Application",
+            "Value": "auular-www"
+          }
+        ]
+      }
+    },
+    "WebAppS3BucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "WebAppS3Bucket"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject"
+              ],
+              "Effect": "Allow",
+              "Sid": "PublicReadGetObject",
+              "Resource": "arn:aws:s3:::dev-auular-www/*",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity",
+                      " ",
+                      {
+                        "Ref": "cloudfrontoriginaccessidentity"
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "WebAppCloudFrontDistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Comment": "dev-auular",
+          "PriceClass": "PriceClass_100",
+          "Origins": [
+            {
+              "DomainName": "dev-auular-www.s3.amazonaws.com",
+              "Id": "dev-auular-cloudfront",
+              "S3OriginConfig": {
+                "OriginAccessIdentity": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "origin-access-identity/cloudfront/",
+                      {
+                        "Ref": "cloudfrontoriginaccessidentity"
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Enabled": "true",
+          "Aliases": [
+            "dev.auular.com.br"
+          ],
+          "DefaultRootObject": "index.html",
+          "CustomErrorResponses": [
+            {
+              "ErrorCode": 404,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/index.html"
+            },
+            {
+              "ErrorCode": 403,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/index.html"
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+            "AllowedMethods": [
+              "GET",
+              "HEAD"
+            ],
+            "TargetOriginId": "dev-auular-cloudfront",
+            "ForwardedValues": {
+              "QueryString": "false",
+              "Cookies": {
+                "Forward": "none"
+              }
+            },
+            "ViewerProtocolPolicy": "redirect-to-https"
+          },
+          "ViewerCertificate": {
+            "AcmCertificateArn": "arn:aws:acm:us-east-1:982731487290:certificate/4d2c7fab-a86a-4b7a-9634-1321aa8c0b26",
+            "MinimumProtocolVersion": "TLSv1.2_2021",
+            "SslSupportMethod": "sni-only"
+          }
+        },
+        "Tags": [
+          {
+            "Key": "IsProduction",
+            "Value": "false"
+          },
+          {
+            "Key": "Provisioner",
+            "Value": "cloudformation://github.com/auular/auular-www"
+          },
+          {
+            "Key": "DataClassification",
+            "Value": "Sierra"
+          },
+          {
+            "Key": "ResiliencyTier",
+            "Value": "Bronze"
+          },
+          {
+            "Key": "Application",
+            "Value": "auular-www"
+          }
+        ]
+      }
+    },
+    "cloudfrontoriginaccessidentity": {
+      "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+      "Properties": {
+        "CloudFrontOriginAccessIdentityConfig": {
+          "Comment": "dev-auular-oai"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ServerlessDeploymentBucketName": {
+      "Value": {
+        "Ref": "ServerlessDeploymentBucket"
+      },
+      "Export": {
+        "Name": "sls-auular-dev-ServerlessDeploymentBucketName"
+      }
+    },
+    "CloudFrontDistributionId": {
+      "Value": {
+        "Ref": "WebAppCloudFrontDistribution"
+      }
+    },
+    "CloudFrontDomainName": {
+      "Value": {
+        "Fn::GetAtt": [
+          "WebAppCloudFrontDistribution",
+          "DomainName"
+        ]
+      }
+    }
+  }
+}

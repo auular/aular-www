@@ -5,6 +5,8 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   poweredByHeader: false,
+  distDir: "dist",
+  pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js"],
 
   sassOptions: {
     includePaths: [path.join(__dirname, "/src/styles")],

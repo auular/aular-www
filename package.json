@@ -34,6 +34,12 @@
   },
   "devDependencies": {
     "eslint": "8.24.0",
-    "eslint-config-next": "12.3.1"
+    "eslint-config-next": "12.3.1",
+    "serverless-certificate-creator": "^1.6.0",
+    "serverless-cloudfront-invalidate": "^1.12.2",
+    "serverless-domain-manager": "^6.2.1",
+    "serverless-plugin-resource-tagging": "^1.2.0",
+    "serverless-s3-sync": "^3.1.0",
+    "serverless-website-domain": "^2.0.6"
   }
 }

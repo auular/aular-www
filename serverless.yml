@@ -1,5 +1,64 @@
-auular:
-  component: "@sls-next/serverless-component"
-  inputs:
-    domain: "auular.com.br"
-    bucketName: auular-www
+service: auular
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  stackTags:
+    IsProduction: ${self:custom.IsProduction.${self:provider.stage}}
+    Provisioner: cloudformation://github.com/auular/${self:service}-www
+    DataClassification: Sierra
+    ResiliencyTier: Bronze
+    # ServiceNowAppID: ${env:SERVICENOW_APP}
+    Application: auular-www
+  tags:
+    IsProduction: ${self:custom.IsProduction.${self:provider.stage}}
+    Provisioner: cloudformation://github.com/auular/${self:service}-www
+    DataClassification: Sierra
+    ResiliencyTier: Silver
+    # ServiceNowAppID: ${env:SERVICENOW_APP}
+    Application: auular-www
+
+custom:
+  IsProduction:
+    dev: false
+    prd: true
+
+  domains:
+    dev: "dev.auular.com.br" #${env:DOMAIN_DEV}
+    prd: "auular.com.br" #${env:DOMAIN_PRD}
+
+  domainName: ${self:custom.domains.${self:provider.stage}}
+  name: ${self:provider.stage}-${self:service}
+  cloudFrontId: ${self:custom.name}-cloudfront
+  bucket: ${self:custom.name}-ui
+
+  s3Sync:
+    - bucketName: ${self:custom.bucket}
+      localDir: dist/static
+
+  websiteDomain:
+    domain: ${self:custom.domainName}
+    cloudfrontOutputKey: "CloudFrontDomainName"
+
+  customCertificate:
+    certificateName: ${self:custom.domainName}
+    hostedZoneNames: ${self:custom.domainName}.
+
+  cloudfrontInvalidate:
+    - distributionIdKey: "CloudFrontDistributionId"
+      autoInvalidate: true
+      items:
+        - "/index.html"
+
+plugins:
+  - serverless-s3-sync
+  - serverless-certificate-creator
+  - serverless-website-domain
+  - serverless-cloudfront-invalidate
+  - serverless-plugin-resource-tagging
+
+resources:
+  - ${file(./serverless-resources.yml)}
