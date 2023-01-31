@@ -5,14 +5,12 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   poweredByHeader: false,
-
+  experimental: {
+    output: true,
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, "/src/styles")],
     prependData: `@import "./sass/main.scss";`,
-  },
-
-  eslint: {
-    ignoreDuringBuilds: true,
   },
 
   async rewrites() {

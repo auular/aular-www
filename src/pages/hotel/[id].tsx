@@ -1,6 +1,6 @@
 import { useSession } from "next-auth/react";
 import { Header } from "../../components/Header";
-import { Suspense, useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import {
   serviceOptions,
   petsAccepted,
@@ -8,11 +8,11 @@ import {
 import { useBooleanValue } from "./hooks/useBooleanValue";
 import { useRouter } from "next/router";
 import { useSlug } from "../../hooks/useSlug";
+import { useBuffer } from "./hooks/useBuffer";
 import axios from "axios";
 import api from "../../services/api";
 
 import styles from "./Hotel.module.scss";
-import { useBuffer } from "./hooks/useBuffer";
 
 export default function Hotel({ hotelInfo, imageBuffer }) {
   const { status, data } = useSession();
@@ -22,13 +22,11 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
   const { hotel, address, servicesProvided } = hotelInfo;
   const { getContentByBoolean } = useBooleanValue();
 
-  let hotelImage;
+  let hotelImage: JSX.Element = <></>;
 
   if (imageBuffer !== "") {
     hotelImage = useBuffer(imageBuffer);
   }
-
-  console.log(hotelImage);
 
   const servicesProvidedByHotel = getContentByBoolean(
     servicesProvided,
@@ -89,11 +87,9 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
               </li> */}
             </ul>
             <div id="#" className={styles.hotel__content__info}>
-              {hotelImage === undefined ? (
-                <img src="/images/dog-playing.svg" />
-              ) : (
-                hotelImage
-              )}
+              <Suspense fallback={<img src="/images/dog-playing.svg" />}>
+                {hotelImage}
+              </Suspense>
               <div className={styles.hotel__content__info_description}>
                 <h3>Sobre o {hotel.name}</h3>
                 <p>{hotel.description}</p>
