@@ -31,7 +31,10 @@ const MapSearch = ({ mapboxToken }) => {
         return { location: coordinates, hotelId };
       })
     );
-    setHotelLocations(hotels);
+
+    setHotelLocations(
+      hotels.filter((hotel) => Object.keys(hotel.location).length !== 0)
+    );
   };
 
   const onCEPResult = async ({ cep }) => {

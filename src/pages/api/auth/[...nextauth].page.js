@@ -9,7 +9,7 @@ const authOptions = {
   providers: [
     CredentialsProvider({
       type: "credentials",
-      credentials: {},
+      credentials: {},      
       async authorize(credentials, req) {
         const { data } = await api.post(
           "/petTutors/autentication",
