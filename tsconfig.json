@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/pages/hotel/[id].page.js"  ],
   "exclude": [
     "node_modules"
   ]

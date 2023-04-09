@@ -1,9 +1,9 @@
 import Input from "../../../../components/Input";
 import { useForm } from "react-hook-form";
 import { YellowButton } from "../../../../components/YellowButton";
-import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Map, { GeolocateControl, Marker, NavigationControl } from "react-map-gl";
 import useCoordinates from "../../../../services/coordinates";
 import api from "../../../../services/api";
 import "mapbox-gl/dist/mapbox-gl.css";
@@ -31,7 +31,10 @@ const MapSearch = ({ mapboxToken }) => {
         return { location: coordinates, hotelId };
       })
     );
-    setHotelLocations(hotels);
+
+    setHotelLocations(
+      hotels.filter((hotel) => Object.keys(hotel.location).length !== 0)
+    );
   };
 
   const onCEPResult = async ({ cep }) => {
@@ -94,7 +97,7 @@ const MapSearch = ({ mapboxToken }) => {
               </Marker>
             ))}
             <NavigationControl position="bottom-right" />
-            <GeolocateControl />
+            <GeolocateControl showAccuracyCircle={true} />
           </Map>
         </div>
       </form>

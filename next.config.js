@@ -5,6 +5,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   poweredByHeader: false,
+  pageExtensions: ["page.tsx", "page.ts", "page.jsx", "page.js"],
   experimental: {
     output: true,
   },

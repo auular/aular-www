@@ -22,7 +22,7 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
   const { hotel, address, servicesProvided } = hotelInfo;
   const { getContentByBoolean } = useBooleanValue();
 
-  let hotelImage: JSX.Element = <></>;
+  let hotelImage = <></>;
 
   if (imageBuffer !== "") {
     hotelImage = useBuffer(imageBuffer);
@@ -87,9 +87,7 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
               </li> */}
             </ul>
             <div id="#" className={styles.hotel__content__info}>
-              <Suspense fallback={<img src="/images/dog-playing.svg" />}>
-                {hotelImage}
-              </Suspense>
+              <img src="/images/dog-playing.svg" />
               <div className={styles.hotel__content__info_description}>
                 <h3>Sobre o {hotel.name}</h3>
                 <p>{hotel.description}</p>
@@ -122,7 +120,7 @@ export default function Hotel({ hotelInfo, imageBuffer }) {
   return <h2>Loading...</h2>;
 }
 
-export async function getStaticPaths() {
+export const getStaticPaths = async () => {
   const { data } = await api.get("/hotels");
   // TODO: validar se tem data
 
@@ -134,28 +132,30 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
+export const getStaticProps = async ({ params }) => {
   const { data } = await api.get(`/hotels/allFields/${params.id}`);
   const { buildSlugByName } = useSlug();
 
+  console.log(data);
+
   let res;
 
-  try {
-    res = await axios.post("http://localhost:3000/api/v1/download", {
-      hotelSlug: buildSlugByName(data.hotel.name),
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  // try {
+  //   res = await axios.post("http://localhost:3000/api/v1/download", {
+  //     hotelSlug: buildSlugByName(data.hotel.name),
+  //   });
+  // } catch (err) {
+  //   console.log(err);
+  // }
 
-  const imageBuffer = res.data?.buffer ?? "";
+  // const imageBuffer = res.data?.buffer ?? "";
 
   return {
     props: {
       hotelInfo: data,
-      imageBuffer,
+      // imageBuffer,
     },
   };
-}
+};
