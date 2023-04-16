@@ -16,7 +16,7 @@ export default function Home({ mapboxToken }) {
       <div className={styles.home__container}>
         <div className={styles.home__hero}>
           <div className={styles.home__hero_content}>
-            <h1>Vai viajar e não sabe com quem deixar seu pet?</h1>
+            <h1>Olá pai de pet!</h1>
             <p>
               Para nós do AuuLar, o bem-estar do seu pet vem sempre em
               <span> primeiro lugar.</span>
